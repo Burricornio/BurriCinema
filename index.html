@@ -21,8 +21,8 @@
     <div id="overview">
         <div id="main">
             <!-- Nos suscribimos a un evento emitido por un hijo-->
-            <movie-list v-on:checked-filter="checkFilter"></movie-list>
-            <movie-filter></movie-filter>
+            <movie-list ></movie-list>
+            <movie-filter v-on:check-filter="checkFilter"></movie-filter>
         </div>
     </div>
 </div>

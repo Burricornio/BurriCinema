@@ -4,9 +4,24 @@ import genres from './util/genres'; // Importamos el mock de generos
 
 new Vue({ // Instanciamos la app
     el: '#app',
+    data: {
+        genre: [],
+        time: []
+    },
     methods: {
         checkFilter(category, title, checked ) {
-            console.log(category, title, checked )
+
+            if(checked) {
+                this[category].push(title);
+            } else {
+                let index = this[category].indexOf(title);
+                if(index > -1) {
+                    this[category].splice(index, 1)
+                }
+            }
+        },
+        prueba() {
+            console.log('Probando')
         }
     },
     components: {
