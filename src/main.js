@@ -22,15 +22,22 @@ new Vue({ // Instanciamos la app
             }
         },
         'movie-filter': {
+            // Estamos suscritos al evento check-filter del hijo y le asignamos un manejador
             template: `<div id="movie-filter">
                     <h2>Filter results</h2>
                     <div class="filter-group">
-                        <check-filter v-for="(genre, index) in genres" :key="index" v-bind:title="genre"></check-filter>
+                        <check-filter v-for="(genre, index) in genres" :key="index" v-bind:title="genre"
+                        v-on:check-filter="checkFilter"></check-filter>
                     </div>
                 </div>`,
             data: function() {
                 return {
                     genres
+                }
+            },
+            methods: {
+                checkFilter(){
+                    console.log('checkFilter');
                 }
             },
             components: {
@@ -41,10 +48,18 @@ new Vue({ // Instanciamos la app
                         }
                     },
                     props: [ 'title' ],
-                    template: `<div v-bind:class="{'check-filter':true, active: checked}" v-on:click="checked = !checked">
+                    template: `<div v-bind:class="{'check-filter':true, active: checked}" v-on:click="checkFilter">
                                     <span class="checkbox"></span>
                                     <span class="check-filter-title">{{ title }}</span>
                                 </div>`,
+                    methods: {
+                        checkFilter() {
+                            this.checked = !this.checked;
+                            // Publicamos un evento al que se subscribirá el padre. 
+                            // De esta forma pasamos información componentes hijos a padres
+                            this.$emit('check-filter');
+                        }
+                    }
                 }
             }
         }
