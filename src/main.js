@@ -34,12 +34,13 @@ new Vue({ // Instanciamos la app
             data: function() {
                 return {
                     movies: [
-                        { title: 'Pulp Fiction'},
-                        { title: 'Home Alone'},
-                        { title: 'Austin Powers'},
+                        { title: 'Pulp Fiction', genre: genres.CRIME },
+                        { title: 'Home Alone', genre: genres.COMEDY} ,
+                        { title: 'Austin Powers', genre: genres.COMEDY },
                     ]
                 }
-            }
+            },
+            props: ['genre', 'time']
         },
         'movie-filter': {
             // Estamos suscritos al evento check-filter del hijo y le asignamos un manejador
