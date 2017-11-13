@@ -4,6 +4,11 @@ import genres from './util/genres'; // Importamos el mock de generos
 
 new Vue({ // Instanciamos la app
     el: '#app',
+    methods: {
+        checkFilter(category, title, checked ) {
+            console.log(category, title, checked )
+        }
+    },
     components: {
         'movie-list': {
             template: `<div id="movie-list">
@@ -36,8 +41,9 @@ new Vue({ // Instanciamos la app
                 }
             },
             methods: {
-                checkFilter(){
-                    console.log('checkFilter');
+                checkFilter(category, title, checked ){
+                    // Volvemos a emitir un evento para pasar datos al padre
+                    this.$emit('check-filter', category, title, checked );
                 }
             },
             components: {
@@ -57,7 +63,7 @@ new Vue({ // Instanciamos la app
                             this.checked = !this.checked;
                             // Publicamos un evento al que se subscribirá el padre. 
                             // De esta forma pasamos información componentes hijos a padres
-                            this.$emit('check-filter');
+                            this.$emit('check-filter', 'genre', this.title, this.checked);
                         }
                     }
                 }

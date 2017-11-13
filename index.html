@@ -20,7 +20,8 @@
     </div>
     <div id="overview">
         <div id="main">
-            <movie-list></movie-list>
+            <!-- Nos suscribimos a un evento emitido por un hijo-->
+            <movie-list v-on:checked-filter="checkFilter"></movie-list>
             <movie-filter></movie-filter>
         </div>
     </div>
