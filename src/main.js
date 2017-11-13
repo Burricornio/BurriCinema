@@ -25,7 +25,7 @@ new Vue({ // Instanciamos la app
             template: `<div id="movie-filter">
                     <h2>Filter results</h2>
                     <div class="filter-group">
-                        <check-filter v-for="(genre, index) in genres">{{ genre(index) }}</check-filter>
+                        <check-filter v-for="genre in genres" v-bind:title="genre"></check-filter>
                     </div>
                 </div>`,
             data: function() {
@@ -35,7 +35,11 @@ new Vue({ // Instanciamos la app
             },
             components: {
                 'check-filter': {
-                    template: `<div>Filter</div>`
+                    props: [ 'title' ],
+                    template: `<div class="check-filter">
+                                    <span class="checkbox"></span>
+                                    <span class="check-filter-title">{{ title }}</span>
+                                </div>`,
                 }
             }
         }
