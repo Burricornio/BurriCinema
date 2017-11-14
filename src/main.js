@@ -29,7 +29,8 @@ new Vue({ // Instanciamos la app
         time: [],
         movies: [],
         // Compartimos la instancia de 'MomentJS'
-        moment
+        moment,
+        day: moment()
     },
     methods: {
         checkFilter(category, title, checked ) {
