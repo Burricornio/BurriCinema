@@ -6,6 +6,14 @@ import genres from './util/genres'; // Importamos el mock de generos
 import MovieList from './components/MovieList.vue';
 import MovieFilter from './components/MovieFilter.vue';
 
+// Importamos la librería 'MomentJS'components
+import moment from 'moment-timezone';
+// Configuramos la time zone
+moment.tz.setDefault("UTC");
+// De esta manera hacemos la librería accesible desde cualquier componente
+Object.defineProperty(Vue.prototype, '$moment', { get(){ return this.$root.moment } });
+
+
 //Importamos Vue resource para hacer peticiones HTTP
 import VueResource from 'vue-resource';
 // Instalamos el recurso - Se genera el objeto $http
@@ -19,7 +27,9 @@ new Vue({ // Instanciamos la app
     data: {
         genre: [],
         time: [],
-        movies: []
+        movies: [],
+        // Compartimos la instancia de 'MomentJS'
+        moment
     },
     methods: {
         checkFilter(category, title, checked ) {

@@ -40,6 +40,9 @@
                 filteredMovies() {
                     return this.movies.filter(this.moviePassesGenreFilter)
                 }
+            },
+            created() {
+                
             }
 
     }
