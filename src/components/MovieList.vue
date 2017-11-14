@@ -1,6 +1,6 @@
 <template>
     <div id="movie-list">
-        <div class="movie" v-for="(movie, index) in filteredMovies" v-bind:key="index">{{ movie.title }}</div>
+        <div class="movie" v-for="(movie, index) in filteredMovies" v-bind:key="index">{{ movie.movie.Title }}</div>
     </div>
 </template>
 
@@ -10,16 +10,7 @@
 
     export default {
 
-        data: function() {
-                return {
-                    movies: [
-                        { title: 'Kill Bill', genre: genres.CRIME },
-                        { title: 'Home Alone', genre: genres.COMEDY} ,
-                        { title: 'Austin Powers', genre: genres.COMEDY },
-                    ]
-                }
-            },
-            props: ['genre', 'time'],
+            props: ['genre', 'time', 'movies'],
             methods: {
                 moviePassesGenreFilter(movie) {
                     if(!this.genre.length) {

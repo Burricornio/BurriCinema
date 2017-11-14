@@ -6,6 +6,11 @@ import genres from './util/genres'; // Importamos el mock de generos
 import MovieList from './components/MovieList.vue';
 import MovieFilter from './components/MovieFilter.vue';
 
+//Importamos Vue resource para hacer peticiones HTTP
+import VueResource from 'vue-resource';
+// Instalamos el recurso - Se genera el objeto $http
+Vue.use(VueResource);
+
 new Vue({ // Instanciamos la app
     el: '#app',
     components: {
@@ -13,7 +18,8 @@ new Vue({ // Instanciamos la app
     },
     data: {
         genre: [],
-        time: []
+        time: [],
+        movies: []
     },
     methods: {
         checkFilter(category, title, checked ) {
@@ -27,6 +33,12 @@ new Vue({ // Instanciamos la app
                 }
             }
         }
+    },
+    created() {
+        this.$http.get('/api')
+                  .then( response => {
+                      this.movies = response.data;
+                  });
     }
 
 })
