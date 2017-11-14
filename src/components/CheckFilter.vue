@@ -13,14 +13,14 @@
                             checked: false
                         }
                     },
-                    props: [ 'title' ],
+                    props: [ 'title', 'category' ],
                     template: ``,
                     methods: {
                         checkFilter() {
                             this.checked = !this.checked;
                             // Publicamos un evento al que se subscribirá el padre. 
                             // De esta forma pasamos información componentes hijos a padres
-                            this.$emit('check-filter', 'genre', this.title, this.checked);
+                            this.$emit('check-filter', this.category , this.title, this.checked);
                         }
                     }
 
