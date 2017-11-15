@@ -2,9 +2,6 @@ import Vue from 'vue'; // Importamos Vue
 import './style.scss'; // Importamos Sass
 import genres from './util/genres'; // Importamos el mock de generos
 
-//Importamos el componente raiz
-import Overview from './components/Overview.vue';
-
 // Importamos la librería 'MomentJS'components
 import moment from 'moment-timezone';
 // Configuramos la time zone
@@ -24,7 +21,7 @@ import routes from './util/routes';
 //Importamos 'Vue-router' y lo instanciamos
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
-new VueRouter ({ routes })
+const router = new VueRouter ({ routes })
 
 import { checkFilter } from './util/bus';
 
@@ -34,10 +31,7 @@ Object.defineProperty(Vue.prototype, '$bus', { get(){ return this.$root.bus}})
 
 new Vue({ // Instanciamos la app
     el: '#app',
-    components: {
-        Overview
-    },
-    routes,
+    router,
     data: {
         genre: [],
         time: [],
