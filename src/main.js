@@ -2,9 +2,8 @@ import Vue from 'vue'; // Importamos Vue
 import './style.scss'; // Importamos Sass
 import genres from './util/genres'; // Importamos el mock de generos
 
-// Importamos componentes
-import MovieList from './components/MovieList.vue';
-import MovieFilter from './components/MovieFilter.vue';
+//Importamos el componente raiz
+import Overview from './components/Overview.vue';
 
 // Importamos la librería 'MomentJS'components
 import moment from 'moment-timezone';
@@ -28,7 +27,7 @@ Object.defineProperty(Vue.prototype, '$bus', { get(){ return this.$root.bus}})
 new Vue({ // Instanciamos la app
     el: '#app',
     components: {
-        MovieList, MovieFilter
+        Overview
     },
     data: {
         genre: [],
