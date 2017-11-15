@@ -1,6 +1,6 @@
 <template>
     <div id="detal" v-if="movie">
-        <movie-item v-bind:movie="movie.movie" v-bind:sessions="[]"></movie-item>
+        <movie-item v-bind:movie="movie.movie"></movie-item>
     </div>
 </template>
 
