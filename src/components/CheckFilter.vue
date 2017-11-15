@@ -19,8 +19,8 @@
                         checkFilter() {
                             this.checked = !this.checked;
                             // Publicamos un evento al que se subscribirá el padre. 
-                            // De esta forma pasamos información componentes hijos a padres
-                            this.$emit('check-filter', this.category , this.title, this.checked);
+                            // De esta forma pasamos información por un bus
+                            this.$bus.$emit('check-filter', this.category , this.title, this.checked);
                         }
                     }
 

@@ -19,6 +19,12 @@ import VueResource from 'vue-resource';
 // Instalamos el recurso - Se genera el objeto $http
 Vue.use(VueResource);
 
+import { checkFilter } from './util/bus';
+
+// CReamos un bus para comunicarnos entre componentes
+const bus = new Vue();
+Object.defineProperty(Vue.prototype, '$bus', { get(){ return this.$root.bus}})
+
 new Vue({ // Instanciamos la app
     el: '#app',
     components: {
@@ -30,26 +36,17 @@ new Vue({ // Instanciamos la app
         movies: [],
         // Compartimos la instancia de 'MomentJS'
         moment,
-        day: moment()
-    },
-    methods: {
-        checkFilter(category, title, checked ) {
-
-            if(checked) {
-                this[category].push(title);
-            } else {
-                let index = this[category].indexOf(title);
-                if(index > -1) {
-                    this[category].splice(index, 1)
-                }
-            }
-        }
+        day: moment(),
+        // Compartimos el bus
+        bus
     },
     created() {
         this.$http.get('/api')
                   .then( response => {
                       this.movies = response.data;
                   });
+        // Nos suscribimos al evento del bus
+        this.$bus.$on('check-filter', checkFilter.bind(this))
     }
 
 })
