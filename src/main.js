@@ -18,6 +18,14 @@ import VueResource from 'vue-resource';
 // Instalamos el recurso - Se genera el objeto $http
 Vue.use(VueResource);
 
+// Importamos el modulo con las rutas
+import routes from './util/routes';
+
+//Importamos 'Vue-router' y lo instanciamos
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
+new VueRouter ({ routes })
+
 import { checkFilter } from './util/bus';
 
 // CReamos un bus para comunicarnos entre componentes
@@ -29,6 +37,7 @@ new Vue({ // Instanciamos la app
     components: {
         Overview
     },
+    routes,
     data: {
         genre: [],
         time: [],
