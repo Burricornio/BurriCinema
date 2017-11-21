@@ -53,3 +53,9 @@ new Vue({ // Instanciamos la app
     }
 
 })
+
+Vue.directive('tooltip', {
+	bind(el, bindings) {
+		console.log(el)
+	}
+})
