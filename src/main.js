@@ -23,7 +23,7 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 const router = new VueRouter ({ routes })
 
-import { checkFilter } from './util/bus';
+import { checkFilter, setDay } from './util/bus';
 
 // CReamos un bus para comunicarnos entre componentes
 const bus = new Vue();
@@ -47,8 +47,9 @@ new Vue({ // Instanciamos la app
                   .then( response => {
                       this.movies = response.data;
                   });
-        // Nos suscribimos al evento del bus
-        this.$bus.$on('check-filter', checkFilter.bind(this))
+        // Nos suscribimos a los evento del bus
+		this.$bus.$on('check-filter', checkFilter.bind(this))
+		this.$bus.$on('set-day', setDay.bind(this))
     }
 
 })
